@@ -1,6 +1,6 @@
 package com.building.management.controller;
 
-import com.building.management.entity.Company;
+import com.building.management.entity.Services;
 import com.building.management.service.BMService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -12,52 +12,52 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController //Danh dau day la 1 API
-@RequestMapping(path = "/company", produces = "application/json")
+@RequestMapping(path = "/services", produces = "application/json")
 @CrossOrigin(origins = "*") //Cho phep ben ngoai goi den API bang IP mang
-public class ConpanyController {
+public class ServicesController {
 
 
     @Autowired //Goi services
-    private BMService<Company> comService;
+    private BMService<Services> serService;
 
-    public ConpanyController(BMService<Company> comService) {
-        this.comService = comService;
+    public ServicesController(BMService<Services> serService) {
+        this.serService = serService;
     }
 
     @GetMapping("/all") //Method tra ve list model
-    public Iterable<Company> getListCompany(){
-        return comService.findAll();
+    public Iterable<Services> getListCompany(){
+        return serService.findAll();
     }
 
-    @GetMapping("/{MA_CT}") //Method tra ve 1 model theo id
-    public Company companyById(@PathVariable("MA_CT") String MA_CT) {
-        Optional<Company> opCompany = comService.findById(MA_CT);
+    @GetMapping("/{MA_DV}") //Method tra ve 1 model theo id
+    public Services companyById(@PathVariable("MA_DV") String MA_DV) {
+        Optional<Services> opCompany = serService.findById(MA_DV);
         if (opCompany.isPresent()) {
             return opCompany.get();
         }
         return null;
     }
     @GetMapping("/search") //url "/search?keyword={name}: name phai viet dung ky tu hoa thuong theo ten cua model de lay ra thong tin cua model chua keyword nay
-    public List<Company> companyByKeyword(@RequestParam(name ="keyword", required = false, defaultValue = "") String name) {
-        return comService.searchByKeyWord(name);
+    public List<Services> companyByKeyword(@RequestParam(name ="keyword", required = false, defaultValue = "") String name) {
+        return serService.searchByKeyWord(name);
     }
 
     @PostMapping(consumes = "application/json") //Create mot model moi vao database
     @ResponseStatus(HttpStatus.CREATED)
-    public Company postCompany(@RequestBody Company company) {
-        return comService.save(company);
+    public Services postCompany(@RequestBody Services company) {
+        return serService.save(company);
     }
 
-    @PutMapping("/{MA_CT}")
+    @PutMapping("/{MA_DV}")
     @ResponseStatus(HttpStatus.CREATED) //Update mot model vao database
-    public Company putCompany(@RequestBody Company company) {
-        return comService.save(company);
+    public Services putCompany(@RequestBody Services company) {
+        return serService.save(company);
     }
 
-    @DeleteMapping("/{MA_CT}") //Xoa mot model theo ID
-    public void deleteCompany(@PathVariable("MA_CT") String MA_CT, Model model) {
+    @DeleteMapping("/{MA_DV}") //Xoa mot model theo ID
+    public void deleteCompany(@PathVariable("MA_DV") String MA_DV, Model model) {
         try {
-            comService.deleteById(MA_CT);
+            serService.deleteById(MA_DV);
         } catch (EmptyResultDataAccessException e) {
         }
     }

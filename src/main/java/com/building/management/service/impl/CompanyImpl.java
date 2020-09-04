@@ -11,32 +11,27 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@Service
+@Service //Danh dau day la 1 service de khi goij BMService thi Spring tra ve
 public class CompanyImpl implements BMService<Company> {
-    @Autowired
+    @Autowired //Goi repository de thuc hien cac chuc nang cua JPA Hibernate
     private final CompanyRepository companyRepo;
 
     public CompanyImpl(CompanyRepository companyRepo) {
         this.companyRepo = companyRepo;
     }
 
-    private static ArrayList<Company> lists = new ArrayList<>();
-
-    @Override
+    @Override //Thuc hien viec lay danh sach model
     public Iterable<Company> findAll() {
-        ArrayList<Company> listCom = (ArrayList<Company>) companyRepo.findAll();
-        for (Company com: listCom) {
-            lists.add(com);
-        }
+
         return companyRepo.findAll();
     }
 
-    @Override
+    @Override //Thuc hien viec lay thong tin model theo ID
     public Optional<Company> findById(String id) {
         return companyRepo.findById(id);
     }
 
-    @Override
+    @Override //Thuc hien xoa model theo ID
     public void deleteById(String id) {
         try {
             companyRepo.deleteById(id);
@@ -44,13 +39,14 @@ public class CompanyImpl implements BMService<Company> {
         }
     }
 
-    @Override
+    @Override //Thuc hien viec luu 1 model
     public Company save(Company company) {
         return companyRepo.save(company);
     }
 
-    @Override
+    @Override //Thuc hien viec tim kiem 1 model theo keyword do nguoi dung nhap vao
     public List<Company> searchByKeyWord(String keyword) {
+        Iterable<Company> lists = companyRepo.findAll();
         List<Company> result = new ArrayList<>();
         for (Company com : lists) {
             if (com.getTEN_CT().contains(keyword)){
