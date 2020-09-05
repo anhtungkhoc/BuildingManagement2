@@ -11,10 +11,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@Service //Danh dau day la 1 service de khi goij BMService thi Spring tra ve
+@Service//Danh dau day la 1 service de khi goij BMService thi Spring tra ve
 public class ServicesImpl implements BMService<Services> {
     @Autowired //Goi repository de thuc hien cac chuc nang cua JPA Hibernate
-    private final ServicesRepository servicesRepo;
+    private ServicesRepository servicesRepo;
 
     public ServicesImpl(ServicesRepository servicesRepo) {
         this.servicesRepo = servicesRepo;
@@ -48,7 +48,7 @@ public class ServicesImpl implements BMService<Services> {
         Iterable<Services> lists = servicesRepo.findAll();
         List<Services> result = new ArrayList<>();
         for (Services ser : lists) {
-            if (ser.getTEN_DV().contains(keyword)) {
+            if (ser.getTEN_DV().contains(keyword.toUpperCase()) || ser.getTEN_DV().contains(keyword.toLowerCase())) {
                 result.add(ser);
             }
         }

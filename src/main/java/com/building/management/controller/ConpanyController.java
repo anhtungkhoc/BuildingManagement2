@@ -25,7 +25,7 @@ public class ConpanyController {
     }
 
     @GetMapping("/all") //Method tra ve list model
-    public Iterable<Company> getListCompany(){
+    public Iterable<Company> getListCompany() {
         return comService.findAll();
     }
 
@@ -37,8 +37,10 @@ public class ConpanyController {
         }
         return null;
     }
-    @GetMapping("/search") //url "/search?keyword={name}: name phai viet dung ky tu hoa thuong theo ten cua model de lay ra thong tin cua model chua keyword nay
-    public List<Company> companyByKeyword(@RequestParam(name ="keyword", required = false, defaultValue = "") String name) {
+
+    @GetMapping("/search")
+    //url "/search?keyword={name}: name phai viet dung ky tu hoa thuong theo ten cua model de lay ra thong tin cua model chua keyword nay
+    public List<Company> companyByKeyword(@RequestParam(name = "keyword", required = false, defaultValue = "") String name) {
         return comService.searchByKeyWord(name);
     }
 

@@ -48,7 +48,7 @@ public class BuiMemImpl implements BMService<BuildingMember> {
         Iterable<BuildingMember> lists = buiMemRepo.findAll();
         List<BuildingMember> result = new ArrayList<>();
         for (BuildingMember bm : lists) {
-            if (bm.getTEN().contains(keyword)) {
+            if (bm.getTEN().contains(keyword.toUpperCase()) || bm.getTEN().contains(keyword.toLowerCase())) {
                 result.add(bm);
             }
         }

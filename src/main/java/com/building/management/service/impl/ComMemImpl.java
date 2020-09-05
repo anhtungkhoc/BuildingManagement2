@@ -48,7 +48,7 @@ public class ComMemImpl implements BMService<CompanyMember> {
         Iterable<CompanyMember> lists = comMemRepo.findAll();
         List<CompanyMember> result = new ArrayList<>();
         for (CompanyMember ser : lists) {
-            if (ser.getTEN().contains(keyword)) {
+            if (ser.getTEN().contains(keyword.toUpperCase()) || ser.getTEN().contains(keyword.toLowerCase())) {
                 result.add(ser);
             }
         }

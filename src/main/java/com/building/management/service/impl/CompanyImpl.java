@@ -22,7 +22,6 @@ public class CompanyImpl implements BMService<Company> {
 
     @Override //Thuc hien viec lay danh sach model
     public Iterable<Company> findAll() {
-
         return companyRepo.findAll();
     }
 
@@ -49,7 +48,7 @@ public class CompanyImpl implements BMService<Company> {
         Iterable<Company> lists = companyRepo.findAll();
         List<Company> result = new ArrayList<>();
         for (Company com : lists) {
-            if (com.getTEN_CT().contains(keyword)){
+            if (com.getTEN_CT().contains(keyword.toUpperCase()) || com.getTEN_CT().contains(keyword.toLowerCase())){
                 result.add(com);
             }
         }

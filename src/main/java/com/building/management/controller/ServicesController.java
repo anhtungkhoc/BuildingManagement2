@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController //Danh dau day la 1 API
-@RequestMapping(path = "/services", produces = "application/json")
+@RequestMapping(path = "/service", produces = "application/json")
 @CrossOrigin(origins = "*") //Cho phep ben ngoai goi den API bang IP mang
 public class ServicesController {
 
@@ -20,9 +20,7 @@ public class ServicesController {
     @Autowired //Goi services
     private BMService<Services> serService;
 
-    public ServicesController(BMService<Services> serService) {
-        this.serService = serService;
-    }
+    public ServicesController(BMService<Services> serService) {this.serService = serService; }
 
     @GetMapping("/all") //Method tra ve list model
     public Iterable<Services> getListCompany(){
