@@ -55,4 +55,8 @@ public class CompanyImpl implements BMService<Company> {
         return result;
     }
 
+    public List<String> getListBill(){
+        return companyRepo.listCompayHOA_DON_CTY();
+    }
+
 }

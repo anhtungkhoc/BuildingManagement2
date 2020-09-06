@@ -1,7 +1,9 @@
 package com.building.management.controller;
 
 import com.building.management.entity.Company;
+import com.building.management.entity.CompanyBill;
 import com.building.management.service.BMService;
+import com.building.management.service.impl.ComBillImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
@@ -19,6 +21,8 @@ public class ConpanyController {
 
     @Autowired //Goi services
     private BMService<Company> comService;
+    @Autowired
+    private ComBillImpl companyImpl;
 
     public ConpanyController(BMService<Company> comService) {
         this.comService = comService;
@@ -63,4 +67,20 @@ public class ConpanyController {
         } catch (EmptyResultDataAccessException e) {
         }
     }
+
+    @GetMapping("/bill")
+    public Iterable<CompanyBill> getAllBill() {
+        return companyImpl.findAll();
+    }
+    //Loi tra ve nhieu row cho mot ID - Tim hieu fix sau - gio di đú ngại làm :))
+//    @GetMapping("/bill/{MA_CT}") //Method tra ve 1 model theo id
+//    public CompanyBill comBillById(@PathVariable("MA_CT") String MA_CT) {
+//        Optional<CompanyBill> opCompany = companyImpl.findById(MA_CT);
+//        if (opCompany.isPresent()) {
+//            return opCompany.get();
+//        }
+//        return null;
+//    }
+
+
 }
