@@ -27,20 +27,20 @@ public class InOutImpl implements BMService<InOut> {
 
     @Override //Thuc hien viec lay thong tin model theo ID
     public Optional<InOut> findById(String id) {
-        return inOutRepo.findById(id);
+        return inOutRepo.findById(Integer.parseInt(id));
     }
 
     @Override //Thuc hien xoa model theo ID
     public void deleteById(String id) {
         try {
-            inOutRepo.deleteById(id);
+            inOutRepo.deleteById(Integer.parseInt(id));
         } catch (EmptyResultDataAccessException e) {
         }
     }
 
     @Override //Thuc hien viec luu 1 model
-    public InOut save(InOut services) {
-        return inOutRepo.save(services);
+    public InOut save(InOut inOut) {
+        return inOutRepo.save(inOut);
     }
 
     @Override //Thuc hien viec tim kiem 1 model theo keyword do nguoi dung nhap vao

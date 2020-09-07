@@ -5,7 +5,6 @@ import com.building.management.service.BMService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -53,7 +52,7 @@ public class BuiMemController {
     }
 
     @DeleteMapping("/{MA_NV}") //Xoa mot model theo ID
-    public void deleteBuildingMember(@PathVariable("MA_NV") String MA_NV, Model model) {
+    public void deleteBuildingMember(@PathVariable("MA_NV") String MA_NV) {
         try {
             buiMemService.deleteById(MA_NV);
         } catch (EmptyResultDataAccessException e) {

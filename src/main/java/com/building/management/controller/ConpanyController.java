@@ -7,7 +7,6 @@ import com.building.management.service.impl.ComBillImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -61,7 +60,7 @@ public class ConpanyController {
     }
 
     @DeleteMapping("/{MA_CT}") //Xoa mot model theo ID
-    public void deleteCompany(@PathVariable("MA_CT") String MA_CT, Model model) {
+    public void deleteCompany(@PathVariable("MA_CT") String MA_CT) {
         try {
             comService.deleteById(MA_CT);
         } catch (EmptyResultDataAccessException e) {

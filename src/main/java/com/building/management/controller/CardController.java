@@ -5,7 +5,6 @@ import com.building.management.service.BMService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -52,7 +51,7 @@ public class CardController {
     }
 
     @DeleteMapping("/{MA_THE}") //Xoa mot model theo ID
-    public void deleteCard(@PathVariable("MA_THE") String MA_THE, Model model) {
+    public void deleteCard(@PathVariable("MA_THE") String MA_THE) {
         try {
             cardService.deleteById(MA_THE);
         } catch (EmptyResultDataAccessException e) {

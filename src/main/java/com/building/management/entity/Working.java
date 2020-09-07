@@ -12,12 +12,14 @@ import javax.persistence.Table;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "RA_VAO")
-public class InOut {
+@Table(name = "LAM_VIEC")
+public class Working {
     @Id
-    private int MA_RV;
-    private String MA_THE;
+    private int MA_LV;
+    private String MA_DV;
+    private String MA_NV;
     private String VI_TRI;
-    private String TRANG_THAI;
-    private String CHECK_TIME;
+    private float RATE_LUONG;
+    private String NGAY_BD;
+    private String NGAY_KT;
 }
