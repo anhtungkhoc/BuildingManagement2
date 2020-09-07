@@ -68,19 +68,20 @@ public class ConpanyController {
         }
     }
 
-    @GetMapping("/bill")
+    @GetMapping("/bill") //Lay ra all company's bill
     public Iterable<CompanyBill> getAllBill() {
         return companyImpl.findAll();
     }
-    //Loi tra ve nhieu row cho mot ID - Tim hieu fix sau - gio di đú ngại làm :))
-//    @GetMapping("/bill/{MA_CT}") //Method tra ve 1 model theo id
-//    public CompanyBill comBillById(@PathVariable("MA_CT") String MA_CT) {
-//        Optional<CompanyBill> opCompany = companyImpl.findById(MA_CT);
-//        if (opCompany.isPresent()) {
-//            return opCompany.get();
-//        }
-//        return null;
-//    }
+
+
+    @GetMapping("/bill/{MA_DK}") //Method tra ve 1 bill theo id
+    public CompanyBill comBillById(@PathVariable("MA_DK") String MA_DK) {
+        Optional<CompanyBill> opCompany = companyImpl.findById(MA_DK);
+        if (opCompany.isPresent()) {
+            return opCompany.get();
+        }
+        return null;
+    }
 
 
 }

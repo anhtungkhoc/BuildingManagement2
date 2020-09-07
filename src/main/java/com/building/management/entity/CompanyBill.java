@@ -15,6 +15,7 @@ import javax.persistence.Table;
 @Table(name = "HOA_DON_CTY")
 public class CompanyBill {
     @Id
+    private String MA_DK;
     private String MA_CT;
     private String TEN_CT;
     private String TEN_DV;
