@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @RestController //Danh dau day la 1 API
-@RequestMapping(path = "/in-out-card", produces = "application/json")
+@RequestMapping(path = "/card", produces = "application/json")
 @CrossOrigin(origins = "*") //Cho phep ben ngoai goi den API bang IP mang
 public class CardController {
 
