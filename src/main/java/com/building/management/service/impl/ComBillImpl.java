@@ -42,8 +42,9 @@ public class ComBillImpl implements BMService<CompanyBill> {
         return null;
     }
 
-//    public List<String> getListBill(){
-//        return companyRepo.listCompayHOA_DON_CTY();
-//    }
+    //Thuc hien lay bill theo ngay client chon va theo ma cong ty cu the
+    public List<CompanyBill> getListCompanyBillByDate(String ngayBD, String ngayKT, String maCT){
+        return companyRepo.getCompanyBillByDate(ngayBD,ngayKT,maCT);
+    }
 
 }

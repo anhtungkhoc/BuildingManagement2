@@ -73,7 +73,6 @@ public class ConpanyController {
         return companyImpl.findAll();
     }
 
-    //Tra ve list bill cua comapany
     @GetMapping("/bill/{MA_CT}") //Method tra ve 1 bill theo id
     public List<CompanyBill> comBillByKeyword(@PathVariable("MA_CT") String keyword) {
         Iterable<CompanyBill> allBill = companyImpl.findAll();
@@ -84,5 +83,9 @@ public class ConpanyController {
             }
         }
         return listBill;
+    }
+    @GetMapping("/bill/{ngayBD}/{ngayKT}/{MA_CT}") //Method tra ve 1 bill theo id
+    public List<CompanyBill> getListBillByDate(@PathVariable("ngayBD") String ngayBD,@PathVariable("ngayKT") String ngayKT,@PathVariable("MA_CT") String MA_CT){
+        return companyImpl.getListCompanyBillByDate(ngayBD,ngayKT,MA_CT);
     }
 }
