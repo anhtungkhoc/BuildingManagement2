@@ -15,7 +15,6 @@ import java.util.Optional;
 @CrossOrigin(origins = "*") //Cho phep ben ngoai goi den API bang IP mang
 public class BuiMemController {
 
-
     @Autowired //Goi BuildingMember
     private BMService<BuildingMember> buiMemService;
 

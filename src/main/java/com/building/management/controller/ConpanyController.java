@@ -9,6 +9,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -72,15 +73,16 @@ public class ConpanyController {
         return companyImpl.findAll();
     }
 
-
-    @GetMapping("/bill/{MA_DK}") //Method tra ve 1 bill theo id
-    public CompanyBill comBillById(@PathVariable("MA_DK") String MA_DK) {
-        Optional<CompanyBill> opCompany = companyImpl.findById(MA_DK);
-        if (opCompany.isPresent()) {
-            return opCompany.get();
+    //Tra ve list bill cua comapany
+    @GetMapping("/bill/{MA_CT}") //Method tra ve 1 bill theo id
+    public List<CompanyBill> comBillByKeyword(@PathVariable("MA_CT") String keyword) {
+        Iterable<CompanyBill> allBill = companyImpl.findAll();
+        List<CompanyBill> listBill = new ArrayList<>();
+        for (CompanyBill comBill:allBill){
+            if (comBill.getMA_CT().contains(keyword)){
+                listBill.add(comBill);
+            }
         }
-        return null;
+        return listBill;
     }
-
-
 }
