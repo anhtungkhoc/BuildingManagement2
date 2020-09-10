@@ -7,13 +7,11 @@ import com.building.management.repository.ComMemSalRepository;
 import com.building.management.service.BMService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.*;
-import  java.text.ParseException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 @Service //Danh dau day la 1 service de khi goij BMService thi Spring tra ve
 public class ComMemImpl implements BMService<CompanyMember> {
@@ -56,6 +54,18 @@ public class ComMemImpl implements BMService<CompanyMember> {
         List<CompanyMember> result = new ArrayList<>();
         for (CompanyMember ser : lists) {
             if (ser.getTEN().contains(keyword.toUpperCase()) || ser.getTEN().contains(keyword.toLowerCase())) {
+                result.add(ser);
+            }
+        }
+        return result;
+    }
+
+    //Lay ra list nhan vien cong ty cu the
+    public List<CompanyMember> searchListComMemByIDCompany(String maCT) {
+        Iterable<CompanyMember> lists = comMemRepo.findAll();
+        List<CompanyMember> result = new ArrayList<>();
+        for (CompanyMember ser : lists) {
+            if (ser.getMA_CT().equals(maCT.toUpperCase()) || ser.getMA_CT().equals(maCT.toLowerCase())) {
                 result.add(ser);
             }
         }

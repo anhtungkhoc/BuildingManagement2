@@ -1,6 +1,8 @@
 package com.building.management.service.impl;
 
 import com.building.management.entity.InOut;
+import com.building.management.entity.InOutInfo;
+import com.building.management.repository.InOutInfoRepository;
 import com.building.management.repository.InOutRepository;
 import com.building.management.service.BMService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,9 @@ import java.util.Optional;
 public class InOutImpl implements BMService<InOut> {
     @Autowired //Goi repository de thuc hien cac chuc nang cua JPA Hibernate
     private InOutRepository inOutRepo;
+
+    @Autowired
+    private InOutInfoRepository infoRepository;
 
     public InOutImpl(InOutRepository inOutRepo) {
         this.inOutRepo = inOutRepo;
@@ -54,5 +59,8 @@ public class InOutImpl implements BMService<InOut> {
         }
         return result;
     }
-
+    //Thuc hien lay ra thong tin ra vao cua tung nhan vien trong ngay
+    public List<InOutInfo> getInOutInfoByCHECK_TIMEAndMA_NV(String checkTime, String maNV){
+        return infoRepository.getInOutInfoByCHECK_TIMEAndMA_NV(checkTime,maNV);
+    }
 }

@@ -9,7 +9,6 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import java.text.ParseException;
 import java.util.List;
 import java.util.Optional;
 
@@ -67,14 +66,13 @@ public class ComMemController {
 
     // Lay thong tin luong cua mot nhan vien theo ngay bat dau va ngay ket thuc  cu the
     @GetMapping("/salary/{ngay_BD}/{ngay_KT}/{maNV}")
-    public List<ComMemSalary> getCompanyMemberByDate(@PathVariable("ngay_BD" ) String ngayBD, @PathVariable("ngay_KT") String ngayKT, @PathVariable("maNV") String maNV) throws ParseException {
-//        return comMemImpl.getCompanyMemberByDate();
+    public List<ComMemSalary> getCompanyMemberByDate(@PathVariable("ngay_BD" ) String ngayBD, @PathVariable("ngay_KT") String ngayKT, @PathVariable("maNV") String maNV){
         return comMemImpl.getCompanyMemberByDate(ngayBD,ngayKT,maNV);
     }
-    // Lay thong tin luong cua mot nhan vien theo ngay bat dau va ngay ket thuc  cu the
-//    @GetMapping("/salary")
-//    public List<ComMemSalary> getCompanyMemberByDate() throws ParseException {
-//        return comMemImpl.getCompanyMemberByDate();
-////        return comMemImpl.getCompanyMemberByDate(ngayBD,ngayKT,maNV);
-//    }
+
+    @GetMapping("/list-by-company")
+    public List<CompanyMember> searchListComMemByIDCompany(@RequestParam(name ="keyword", required = false, defaultValue = "")String MA_CT) {
+        return comMemImpl.searchListComMemByIDCompany(MA_CT);
+    }
+
 }

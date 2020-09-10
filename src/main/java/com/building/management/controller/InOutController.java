@@ -1,7 +1,9 @@
 package com.building.management.controller;
 
 import com.building.management.entity.InOut;
+import com.building.management.entity.InOutInfo;
 import com.building.management.service.BMService;
+import com.building.management.service.impl.InOutImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
@@ -18,6 +20,9 @@ public class InOutController {
 
     @Autowired //Goi services
     private BMService<InOut> comInOut;
+
+    @Autowired
+    private InOutImpl inOutImpl;
     
     public InOutController(BMService<InOut> comInOut) {
         this.comInOut = comInOut;
@@ -61,5 +66,10 @@ public class InOutController {
             comInOut.deleteById(MA_RV);
         } catch (EmptyResultDataAccessException e) {
         }
+    }
+
+    @GetMapping("/in-out-info/{checkTime}/{MA_NV}")
+    public List<InOutInfo> getInOutInfoByCHECK_TIMEAndMA_NV(@PathVariable("checkTime") String checkTime,@PathVariable("MA_NV") String MA_NV){
+        return inOutImpl.getInOutInfoByCHECK_TIMEAndMA_NV(checkTime,MA_NV);
     }
 }
