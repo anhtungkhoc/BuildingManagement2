@@ -1,10 +1,9 @@
 package com.building.management.repository;
 
-
-import com.building.management.entity.CompanyMember;
+import com.building.management.entity.CompanyUse;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ComMemRepository extends CrudRepository<CompanyMember, String> {
+public interface ComUseRepository extends CrudRepository<CompanyUse, Integer>{
 }

@@ -33,10 +33,6 @@ public class CardController {
         }
         return null;
     }
-//    @GetMapping("/search") //url "/search?keyword={name}: name phai viet dung ky tu hoa thuong theo ten cua model de lay ra thong tin cua model chua keyword nay
-//    public List<Card> CardByKeyword(@RequestParam(name ="keyword", required = false, defaultValue = "") String name) {
-//        return cardService.searchByKeyWord(name);
-//    }
 
     @PostMapping(consumes = "application/json") //Create mot model moi vao database
     @ResponseStatus(HttpStatus.CREATED)

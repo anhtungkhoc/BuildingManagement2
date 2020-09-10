@@ -2,17 +2,14 @@ package com.building.management.repository;
 
 
 import com.building.management.entity.ComMemSalary;
-import com.building.management.entity.CompanyMember;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 //@Repository
-public interface ComMemSalRepository extends JpaRepository<ComMemSalary, String> {
+public interface ComMemSalRepository extends CrudRepository<ComMemSalary, String> {
     @Query(value = "SELECT DISTINCT LV.MA_LV,LV.MA_NV , LV.MA_DV,IF (:ngay_BD < LV.NGAY_BD, LV.NGAY_BD, :ngay_BD) AS NGAY_BD, IF (:ngay_KT > LV.NGAY_KT, LV.NGAY_KT, :ngay_KT) AS NGAY_KT,\n" +
             "    DATEDIFF(IF (:ngay_KT > LV.NGAY_KT, LV.NGAY_KT, :ngay_KT),IF (:ngay_BD < LV.NGAY_BD, LV.NGAY_BD, :ngay_BD)) AS SO_NGAY,\n" +
             "    (DATEDIFF(IF (:ngay_KT > LV.NGAY_KT, LV.NGAY_KT, :ngay_KT), IF (:ngay_BD < LV.NGAY_BD, LV.NGAY_BD, :ngay_BD))*LV.RATE_LUONG) AS LUONG,\n" +

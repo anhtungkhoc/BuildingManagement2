@@ -160,7 +160,7 @@ AND DV.MA_DV = SD.MA_DV
 ORDER BY THUC_TRA
 ;
 
-DROP VIEW HOA_DON_CTY;
+#DROP VIEW HOA_DON_CTY;
 
 ##################### Thuc hien duoc ben server
 ##################### SELECT hoa don theo ngay chon tren client
