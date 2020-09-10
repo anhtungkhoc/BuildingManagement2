@@ -17,7 +17,6 @@ import java.util.Optional;
 @CrossOrigin(origins = "*") //Cho phep ben ngoai goi den API bang IP mang
 public class InOutController {
 
-
     @Autowired //Goi services
     private BMService<InOut> comInOut;
 
