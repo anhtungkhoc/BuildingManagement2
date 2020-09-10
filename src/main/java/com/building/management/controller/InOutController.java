@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController //Danh dau day la 1 API
-@RequestMapping(path = "/in-out-control", produces = "application/json")
+@RequestMapping(path = "/in-out", produces = "application/json")
 @CrossOrigin(origins = "*") //Cho phep ben ngoai goi den API bang IP mang
 public class InOutController {
 
