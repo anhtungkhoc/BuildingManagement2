@@ -16,15 +16,14 @@ import java.util.Optional;
 @RestController //Danh dau day la 1 API
 @RequestMapping(path = "/company", produces = "application/json")
 @CrossOrigin(origins = "*") //Cho phep ben ngoai goi den API bang IP mang
-public class ConpanyController {
-
+public class CompanyController {
 
     @Autowired //Goi services
     private BMService<Company> comService;
     @Autowired
     private ComBillImpl companyImpl;
 
-    public ConpanyController(BMService<Company> comService) {
+    public CompanyController(BMService<Company> comService) {
         this.comService = comService;
     }
 
