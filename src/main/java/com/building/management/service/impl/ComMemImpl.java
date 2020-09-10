@@ -1,20 +1,27 @@
 package com.building.management.service.impl;
 
+import com.building.management.entity.ComMemSalary;
 import com.building.management.entity.CompanyMember;
 import com.building.management.repository.ComMemRepository;
+import com.building.management.repository.ComMemSalRepository;
 import com.building.management.service.BMService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.*;
+import  java.text.ParseException;
 
 @Service //Danh dau day la 1 service de khi goij BMService thi Spring tra ve
 public class ComMemImpl implements BMService<CompanyMember> {
     @Autowired //Goi repository de thuc hien cac chuc nang cua JPA Hibernate
     private final ComMemRepository comMemRepo;
+
+    @Autowired
+    private ComMemSalRepository comMemSalRepository;
 
     public ComMemImpl(ComMemRepository comMemRepo) {
         this.comMemRepo = comMemRepo;
@@ -53,6 +60,11 @@ public class ComMemImpl implements BMService<CompanyMember> {
             }
         }
         return result;
+    }
+
+    // Lay thong tin bill company by date
+    public List<ComMemSalary> getCompanyMemberByDate(String ngayBD, String ngayKT, String maNV){
+        return comMemSalRepository.getCompanyMemberByDate(ngayBD,ngayKT,maNV);
     }
 
 }

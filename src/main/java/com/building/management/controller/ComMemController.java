@@ -1,23 +1,29 @@
 package com.building.management.controller;
 
+import com.building.management.entity.ComMemSalary;
 import com.building.management.entity.CompanyMember;
 import com.building.management.service.BMService;
+import com.building.management.service.impl.ComMemImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
 import java.util.List;
 import java.util.Optional;
 
 @RestController //Danh dau day la 1 API
-@RequestMapping(path = "/company/member", produces = "application/json")
+@RequestMapping(path = "/company-member", produces = "application/json")
 @CrossOrigin(origins = "*") //Cho phep ben ngoai goi den API bang IP mang
 public class ComMemController {
 
 
     @Autowired //Goi CompanyMember
     private BMService<CompanyMember> comMemService;
+
+    @Autowired
+    private ComMemImpl comMemImpl;
 
     public ComMemController(BMService<CompanyMember> comMemService) {this.comMemService = comMemService; }
 
@@ -58,4 +64,17 @@ public class ComMemController {
         } catch (EmptyResultDataAccessException e) {
         }
     }
+
+    // Lay thong tin luong cua mot nhan vien theo ngay bat dau va ngay ket thuc  cu the
+    @GetMapping("/salary/{ngay_BD}/{ngay_KT}/{maNV}")
+    public List<ComMemSalary> getCompanyMemberByDate(@PathVariable("ngay_BD" ) String ngayBD, @PathVariable("ngay_KT") String ngayKT, @PathVariable("maNV") String maNV) throws ParseException {
+//        return comMemImpl.getCompanyMemberByDate();
+        return comMemImpl.getCompanyMemberByDate(ngayBD,ngayKT,maNV);
+    }
+    // Lay thong tin luong cua mot nhan vien theo ngay bat dau va ngay ket thuc  cu the
+//    @GetMapping("/salary")
+//    public List<ComMemSalary> getCompanyMemberByDate() throws ParseException {
+//        return comMemImpl.getCompanyMemberByDate();
+////        return comMemImpl.getCompanyMemberByDate(ngayBD,ngayKT,maNV);
+//    }
 }

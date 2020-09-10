@@ -12,17 +12,16 @@ import javax.persistence.Table;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "HOA_DON_CTY")
-public class CompanyBill {
+@Table(name = "LUONG_NV_TOA")
+public class ComMemSalary {
     @Id
-    private String MA_DK;
-    private String MA_CT;
-    private String TEN_CT;
-    private String TEN_DV;
+    private String MA_LV;
+    private String MA_NV;
+    private String MA_DV;
     private String NGAY_BD;
     private String NGAY_KT;
-    private float DON_GIA_CS;
-    private double MAT_BANG;
-    private double SO_NGAY;
-    private double THUC_TRA;
+    private String SO_NGAY;
+    private float LUONG;
+    private float PT;
+    private float LUONG_THUC_TRA;
 }
