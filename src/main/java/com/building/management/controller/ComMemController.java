@@ -71,7 +71,7 @@ public class ComMemController {
     }
 
     @GetMapping("/list-by-company")
-    public List<CompanyMember> searchListComMemByIDCompany(@RequestParam(name ="keyword", required = false, defaultValue = "")String MA_CT) {
+    public List<CompanyMember> searchListComMemByIDCompany(@RequestParam(name ="MA_CT", required = false, defaultValue = "")String MA_CT) {
         return comMemImpl.searchListComMemByIDCompany(MA_CT);
     }
 
